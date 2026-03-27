@@ -6,7 +6,7 @@
 
 <?php 
 // get the id of the front page
-$st_front_id = get_option('page_on_front ');
+$st_front_id = get_option('page_on_front');
 $st_hp_sidebar_position = of_get_option('st_hp_sidebar');
 ?>
 
@@ -103,8 +103,8 @@ $args = array(
 
 <?php
 // Show homepage content if it's present
-$post = get_page($st_front_id);
-$content = apply_filters('the_content', $post->post_content);
+$post = get_post($st_front_id);
+$content = $post ? apply_filters('the_content', $post->post_content) : '';
 if ($content != '') { ?>
 <!-- #homepage-content -->
 <div id="homepage-content">

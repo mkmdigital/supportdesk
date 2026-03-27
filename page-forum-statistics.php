@@ -7,9 +7,18 @@
  * @subpackage Theme
  */
 
-// Get the statistics and extract them for later use in this template
-// @todo - remove variable references
-extract( bbp_get_statistics(), EXTR_SKIP );
+// Get the statistics for later use in this template
+$stats = bbp_get_statistics();
+$user_count            = isset($stats['user_count'])            ? $stats['user_count']            : 0;
+$forum_count           = isset($stats['forum_count'])           ? $stats['forum_count']           : 0;
+$topic_count           = isset($stats['topic_count'])           ? $stats['topic_count']           : 0;
+$reply_count           = isset($stats['reply_count'])           ? $stats['reply_count']           : 0;
+$topic_tag_count       = isset($stats['topic_tag_count'])       ? $stats['topic_tag_count']       : 0;
+$empty_topic_tag_count = isset($stats['empty_topic_tag_count']) ? $stats['empty_topic_tag_count'] : 0;
+$topic_count_hidden    = isset($stats['topic_count_hidden'])    ? $stats['topic_count_hidden']    : 0;
+$reply_count_hidden    = isset($stats['reply_count_hidden'])    ? $stats['reply_count_hidden']    : 0;
+$hidden_topic_title    = isset($stats['hidden_topic_title'])    ? $stats['hidden_topic_title']    : '';
+$hidden_reply_title    = isset($stats['hidden_reply_title'])    ? $stats['hidden_reply_title']    : '';
 
 get_header(); ?>
 

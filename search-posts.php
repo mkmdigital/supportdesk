@@ -11,7 +11,7 @@ $st_index_id = get_option('page_for_posts');
 $st_page_sidebar_pos = get_post_meta( $st_index_id, '_st_page_sidebar', true );
 ?>
 
-<?php if(!empty($_GET['ajax']) ? $_GET['ajax'] : null) { // Is Live Search ?>
+<?php if (!empty($_GET['ajax'])) { // Is Live Search ?>
 
 <?php if ( have_posts() ) { ?>
 

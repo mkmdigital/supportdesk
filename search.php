@@ -5,7 +5,7 @@
 */
 ?>
 
-<?php if(!empty($_GET['ajax']) ? $_GET['ajax'] : null) { // Is Live Search ?>
+<?php if (!empty($_GET['ajax'])) { // Is Live Search ?>
 
 <?php if ( have_posts() ) { ?>
 

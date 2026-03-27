@@ -8,15 +8,18 @@
 <?php 
 // Get position and location of sidebar
 $st_kb_sidebar_location = of_get_option('st_kb_sidebar_location');
+if (!is_array($st_kb_sidebar_location)) {
+	$st_kb_sidebar_location = array();
+}
 
-if ($st_kb_sidebar_location['search'] == '1') {
+if (!empty($st_kb_sidebar_location['search'])) {
 	$st_kb_sidebar_position = of_get_option('st_kb_sidebar');
 } else {
 	$st_kb_sidebar_position = 'off';
 }
 ?>
 
-<?php if(!empty($_GET['ajax']) ? $_GET['ajax'] : null) { // Is Live Search ?>
+<?php if (!empty($_GET['ajax'])) { // Is Live Search ?>
 
 <?php if ( have_posts() ) { ?>
 
@@ -49,18 +52,18 @@ if ($st_kb_sidebar_location['search'] == '1') {
 <!-- #content -->
   <section id="content" role="main">
   
-<?php 
+<?php
 // The Query
 global $query_string;
-query_posts( $query_string . '&posts_per_page=8=' );
+$search_query = new WP_Query( $query_string . '&posts_per_page=8' );
 ?>
-<?php if ( have_posts() ) { ?>
+<?php if ( $search_query->have_posts() ) { ?>
 
 	<?php /* Start the Loop */ ?>
-	<?php while ( have_posts() ) : the_post(); ?>
+	<?php while ( $search_query->have_posts() ) : $search_query->the_post(); ?>
 
 	<?php get_template_part( 'content-kb', get_post_format() );	?>
-         			
+
 	<?php endwhile;  ?>
 
 	<?php st_content_nav( 'nav-below' );?>
@@ -70,6 +73,7 @@ query_posts( $query_string . '&posts_per_page=8=' );
 	<?php get_template_part( 'content', 'none' ); ?>
 
 <?php } ?>
+<?php wp_reset_postdata(); ?>
     
 </section>
 <!-- /#content -->

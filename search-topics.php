@@ -10,7 +10,7 @@
 $st_forum_sidebar_position = of_get_option('st_forum_sidebar');
 ?>
 
-<?php if(!empty($_GET['ajax']) ? $_GET['ajax'] : null) { // Is Live Search ?>
+<?php if (!empty($_GET['ajax'])) { // Is Live Search ?>
 
 <?php if ( bbp_has_search_results() ) { ?>
 

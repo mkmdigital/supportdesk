@@ -3,8 +3,11 @@
 <?php 
 // Get position and location of sidebar
 $st_kb_sidebar_location = of_get_option('st_kb_sidebar_location');
+if (!is_array($st_kb_sidebar_location)) {
+	$st_kb_sidebar_location = array();
+}
 
-if (($st_kb_sidebar_location['category'] == '1') && (is_active_sidebar( 'st_sidebar_kb' ))) {
+if ((!empty($st_kb_sidebar_location['category'])) && (is_active_sidebar( 'st_sidebar_kb' ))) {
 	$st_kb_sidebar_position = of_get_option('st_kb_sidebar');
 } else {
 	$st_kb_sidebar_position = 'off';

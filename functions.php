@@ -45,6 +45,11 @@ function st_theme_setup() {
 	add_theme_support( 'automatic-feed-links' );
 	
 	/**
+	 * Add support for title tag
+	 */
+	add_theme_support( 'title-tag' );
+
+	/**
 	 * Enable support for Post Thumbnails
 	 */
 	add_theme_support( 'post-thumbnails' );
@@ -306,11 +311,6 @@ add_action('manage_posts_custom_column', 'st_show_kb_admin_columns');
 		}
 }
 
-
-//add_filter('parse_query', 'st_kb_tag_query');
-function st_kb_tag_query( $q ) {
-       query_posts('post_type=st_kb&taxonomy=st_kb_tag');
-}
 
 function st_kb_tag_taxonomy( $query ) {
     if ( !is_admin() && $query->is_main_query() && is_tax( 'st_kb_tag' )  ) {
