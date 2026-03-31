@@ -216,6 +216,7 @@ function change_posttype() {
 add_action( 'parse_query', 'change_posttype' );
 
 function my_post_queries( $query ) {
+if ( !function_exists( 'of_get_option' ) ) return;
 $st_kb_ppp = of_get_option('st_kb_articles_per_page');
 if ( !is_admin() && $query->is_main_query() ) {
 	if(is_tax('st_kb_category')){
