@@ -101,6 +101,39 @@ $args = array(
 <?php endif; wp_reset_postdata(); ?>
 
 
+<!-- #latest-news -->
+<?php
+$news_query = new WP_Query( array(
+	'post_type'           => 'post',
+	'posts_per_page'      => 3,
+	'ignore_sticky_posts' => 1
+) );
+if ( $news_query->have_posts() ) : ?>
+<div id="latest-news">
+<div class="ht-container">
+	<h2 class="section-title"><?php _e( 'Die neusten Artikel', 'framework' ); ?></h2>
+	<div class="row stacked">
+		<?php while ( $news_query->have_posts() ) : $news_query->the_post(); ?>
+		<div class="column col-third">
+			<article class="news-card">
+				<?php if ( has_post_thumbnail() ) { ?>
+				<a href="<?php the_permalink(); ?>" class="news-thumb">
+					<?php the_post_thumbnail( 'post' ); ?>
+				</a>
+				<?php } ?>
+				<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+				<time datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
+				<p><?php echo wp_trim_words( get_the_excerpt(), 20, '&hellip;' ); ?></p>
+			</article>
+		</div>
+		<?php endwhile; ?>
+	</div>
+</div>
+</div>
+<?php endif; wp_reset_postdata(); ?>
+<!-- /#latest-news -->
+
+
 <?php
 // Show homepage content if it's present
 $post = get_post($st_front_id);
